@@ -38,13 +38,13 @@ struct DetailView: View {
                 }
                 // Popover anchored to the button's bounds
                 .popover(isPresented: $showingPopover,
-                         attachmentAnchor: .rect(.bounds),
-                         arrowEdge: .top) {
-                    SettingsPopoverView(isPresented: $showingPopover)
-                        .environmentObject(settings)
-                        .frame(minWidth: 320, idealWidth: 360, maxWidth: 420,
-                               minHeight: 220, idealHeight: 260, maxHeight: 380)
-                }
+                                         attachmentAnchor: .rect(.bounds),
+                                         arrowEdge: .top) {
+                                    SettingsPopoverView(isPresented: $showingPopover)
+                                        .environmentObject(settings)
+                                        .frame(minWidth: 320, idealWidth: 360, maxWidth: 420,
+                                               minHeight: 320, idealHeight: 400, maxHeight: 500)
+                                }
                 .onHover { over in
                     // pointer feedback on iPad trackpad/mouse
                     withAnimation(.easeInOut(duration: 0.12)) { isHoveringButton = over }

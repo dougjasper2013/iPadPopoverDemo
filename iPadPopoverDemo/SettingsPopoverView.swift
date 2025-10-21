@@ -40,13 +40,12 @@ struct SettingsPopoverView: View {
                     Button("Done") {
                         isPresented = false
                     }
-                    .keyboardShortcut(.defaultAction)
                 }
             }
         }
-        .interactiveDismissDisabled(false) // allow tap outside to dismiss on iPad
     }
 }
+
 
 #Preview {
     SettingsPopoverView(isPresented: .constant(true))

@@ -1,19 +1,27 @@
-//
-//  SettingsStore.swift
-//  iPadPopoverDemo
-//
-//  Created by Douglas Jasper on 2025-10-21.
-//
-
 import Foundation
 import SwiftUI
-import Combine
 
-// Simple ObservableObject to hold app settings
 final class SettingsStore: ObservableObject {
-    @Published var theme: Theme = .automatic
-    @Published var showGrid: Bool = true
-    @Published var fontSize: Double = 18.0
+    // Store theme as rawValue string
+    @AppStorage("theme") var themeRaw: String = Theme.automatic.rawValue {
+        didSet { objectWillChange.send() }
+    }
+
+    // Computed property for Theme enum
+    var theme: Theme {
+        get { Theme(rawValue: themeRaw) ?? .automatic }
+        set {
+            themeRaw = newValue.rawValue
+        }
+    }
+
+    @AppStorage("showGrid") var showGrid: Bool = true {
+        didSet { objectWillChange.send() }
+    }
+
+    @AppStorage("fontSize") var fontSize: Double = 18.0 {
+        didSet { objectWillChange.send() }
+    }
 
     enum Theme: String, CaseIterable, Identifiable {
         case automatic = "Automatic"
